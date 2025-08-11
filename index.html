@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valeria Ascanio - Diseñadora Gráfica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@100;200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .geometric-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .hexagon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af20, #3b82f620);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: absolute;
+            animation: floatHex 8s ease-in-out infinite;
+            border: 1px solid #1e40af30;
+        }
+        
+        .hexagon:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .hexagon:nth-child(2) { top: 20%; right: 15%; animation-delay: -2s; }
+        .hexagon:nth-child(3) { bottom: 30%; left: 20%; animation-delay: -4s; }
+        .hexagon:nth-child(4) { bottom: 15%; right: 25%; animation-delay: -6s; }
+        .hexagon:nth-child(5) { top: 50%; left: 5%; animation-delay: -1s; }
+        .hexagon:nth-child(6) { top: 70%; right: 10%; animation-delay: -3s; }
+        
+        @keyframes floatHex {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.6; }
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #60a5fa;
+            border-radius: 50%;
+            animation: particleFloat 6s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .neon-text {
+            font-family: 'Orbitron', monospace;
+            color: #ffffff;
+            text-shadow: 
+                0 0 5px #60a5fa,
+                0 0 10px #60a5fa,
+                0 0 15px #60a5fa,
+                0 0 20px #3b82f6;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 5px #60a5fa, 0 0 10px #60a5fa, 0 0 15px #60a5fa, 0 0 20px #3b82f6; }
+            to { text-shadow: 0 0 2px #60a5fa, 0 0 5px #60a5fa, 0 0 8px #60a5fa, 0 0 12px #3b82f6; }
+        }
+        
+        .cyber-card {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border: 1px solid #475569;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .cyber-card:hover::before {
+            left: 100%;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: #60a5fa;
+            box-shadow: 
+                0 20px 40px rgba(96, 165, 250, 0.2),
+                0 0 20px rgba(96, 165, 250, 0.1);
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #ffffff, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cyber-icon {
+            filter: drop-shadow(0 0 10px #60a5fa40);
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-icon:hover {
+            filter: drop-shadow(0 0 20px #60a5fa80);
+            transform: scale(1.1);
+        }
+        
+        .contact-link {
+            color: #94a3b8;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #60a5fa;
+            text-shadow: 0 0 10px #60a5fa50;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            border: 2px solid #25d366;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 20;
+        }
+        
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .whatsapp-btn:hover::before {
+            left: 100%;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 35px rgba(37, 211, 102, 0.4),
+                0 0 25px rgba(37, 211, 102, 0.2);
+            border-color: #ffffff;
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid #25d366;
+            border-radius: 50px;
+            animation: pulseRing 2s ease-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes pulseRing {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <!-- Fondo geométrico animado -->
+    <div class="geometric-bg">
+        <div class="grid-pattern"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon"></div>
+        <div class="hexagon"></div>
+    </div>
+
+    <!-- Partículas flotantes -->
+    <div class="fixed inset-0 pointer-events-none z-0" id="particles"></div>
+
+<!-- Header -->
+<header class="min-h-screen flex flex-col justify-center items-center text-center relative z-10 overflow-hidden px-4 sm:px-8">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Imagen móvil (centrada arriba del título) -->
+    <div class="block sm:hidden">
+      <img src="C:/Users/User/Downloads/image/valery2.png" alt="Valeria Ascanio" 
+           class="mx-auto w-40 h-auto rounded-full opacity-90" />
+    </div>
+
+    <!-- Imagen desktop (absoluta en esquina inferior izquierda) -->
+    <img src="C:/Users/User/Downloads/image/valery2.png" alt="Valeria Ascanio" 
+         class="hidden sm:block absolute bottom-0 left-0 w-[250px] sm:w-[300px] md:w-[450px] lg:w-[500px] pointer-events-none select-none z-0 opacity-90" />
+
+    <!-- Título principal -->
+    <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold neon-text tracking-wider">
+      VALERIA
+    </h1>
+
+    <!-- Subtítulo -->
+    <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-blue-300 tracking-widest">
+      ASCANIO
+    </h2>
+
+    <!-- Cargo -->
+    <div class="inline-block px-6 py-2 border border-blue-500 rounded-full bg-slate-800/50">
+      <p class="text-base sm:text-lg font-light text-blue-200 tracking-wide">
+        LIC. DISEÑADORA GRÁFICA
+      </p>
+    </div>
+
+    <!-- CTA WhatsApp -->
+    <div class="mt-8">
+      <a href="https://wa.me/584128307816?text=Hola%20Valeria,%20me%20interesa%20solicitar%20tu%20resume%20profesional"
+         target="_blank"
+         class="whatsapp-btn inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 rounded-full text-white font-bold text-base sm:text-lg tracking-wide hover:text-white transition-colors duration-300">
+        <div class="pulse-ring"></div>
+        <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+          <path d="..."/>
+        </svg>
+        SOLICITAR RESUME
+      </a>
+    </div>
+  </div>
+</header>
+    <!-- Portfolio Sections -->
+    <main class="pb-20 relative z-10">
+        
+        <!-- Sección Logos -->
+        <section class="mb-32">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="text-center mb-16">
+                    <div class="cyber-icon mb-6 inline-block">
+                        <svg class="w-20 h-20 text-blue-400" viewBox="0 0 100 100" fill="currentColor">
+                            <circle cx="50" cy="30" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <rect x="35" y="50" width="30" height="20" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M25,80 Q50,70 75,80" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="50" cy="50" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl font-bold section-title mb-6">LOGOS</h2>
+                    <p class="text-blue-200 font-light max-w-2xl mx-auto text-lg">
+                        Identidades visuales únicas que capturan la esencia de cada marca
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg overflow-hidden flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO1.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO2.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO3.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO4.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO5.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO6.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO7.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO8.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO9.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO10.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO11.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-square bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/LOGO12.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Tarjetas de Negocios -->
+        <section class="mb-32">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="text-center mb-16">
+                    <div class="cyber-icon mb-6 inline-block">
+                        <svg class="w-20 h-20 text-blue-400" viewBox="0 0 100 100" fill="currentColor">
+                            <rect x="20" y="35" width="60" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="25" y1="45" x2="45" y2="45" stroke="currentColor" stroke-width="1"/>
+                            <line x1="25" y1="50" x2="40" y2="50" stroke="currentColor" stroke-width="1"/>
+                            <line x1="25" y1="55" x2="35" y2="55" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="65" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl font-bold section-title mb-6">TARJETAS DE NEGOCIOS</h2>
+                    <p class="text-blue-200 font-light max-w-2xl mx-auto text-lg">
+                        Diseños profesionales que causan primera impresión
+                    </p>
+                </div>
+                
+                <<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA1.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA1B.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA2.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA2B.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA3.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA3B.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA4.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA4B.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA5.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[1.6/1] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/TARJETA5B.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>    
+        </section>
+
+        <!-- Sección Carteles -->
+<section class="mb-32">
+  <div class="max-w-7xl mx-auto px-8">
+    <div class="text-center mb-16">
+      <div class="cyber-icon mb-6 inline-block">
+        <!-- Ícono SVG -->
+        <svg class="w-20 h-20 text-blue-400" viewBox="0 0 100 100" fill="currentColor">
+          <rect x="15" y="25" width="70" height="50" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+          <rect x="25" y="35" width="20" height="15" fill="currentColor" opacity="0.3"/>
+          <line x1="50" y1="40" x2="75" y2="40" stroke="currentColor" stroke-width="2"/>
+          <line x1="25" y1="55" x2="75" y2="55" stroke="currentColor" stroke-width="1"/>
+          <line x1="25" y1="60" x2="65" y2="60" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </div>
+      <h2 class="text-5xl font-bold section-title mb-6">CARTELES</h2>
+      <p class="text-blue-200 font-light max-w-2xl mx-auto text-lg">
+        Comunicación visual impactante en formato horizontal
+      </p>
+    </div>
+
+    <!-- Línea 1: 2 carteles -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+      <div class="cyber-card p-6 rounded-xl fade-in">
+        <div class="w-full aspect-[16/9] bg-slate-700 rounded-lg flex items-center justify-center">
+          <img src="C:/Users/User/Downloads/image/CARTEL1.png" alt="Logo 1" class="w-full h-full object-contain" />
+        </div>
+      </div>
+      <div class="cyber-card p-6 rounded-xl fade-in">
+        <div class="w-full aspect-[16/9] bg-slate-700 rounded-lg flex items-center justify-center">
+          <img src="C:/Users/User/Downloads/image/CARTEL2.png" alt="Logo 1" class="w-full h-full object-contain" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Línea 2: 1 cartel centrado a lo ancho -->
+<div class="mb-6">
+  <div class="cyber-card p-6 rounded-xl fade-in">
+    <div class="w-full aspect-[16/9] bg-slate-700 rounded-lg flex items-center justify-center">
+      <img src="C:/Users/User/Downloads/image/CARTEL5.png" alt="Logo 1" class="w-full h-full object-contain" />
+    </div>
+  </div>
+</div>
+
+    <!-- Línea 3: 2 carteles -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="cyber-card p-6 rounded-xl fade-in">
+        <div class="w-full aspect-[16/9] bg-slate-700 rounded-lg flex items-center justify-center">
+          <img src="C:/Users/User/Downloads/image/CARTEL4.png" alt="Logo 1" class="w-full h-full object-contain" />
+        </div>
+      </div>
+      <div class="cyber-card p-6 rounded-xl fade-in">
+        <div class="w-full aspect-[16/9] bg-slate-700 rounded-lg flex items-center justify-center">
+          <img src="C:/Users/User/Downloads/image/CARTEL3.png" alt="Logo 1" class="w-full h-full object-contain" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- Sección Flyers -->
+        <section class="mb-32">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="text-center mb-16">
+                    <div class="cyber-icon mb-6 inline-block">
+                        <svg class="w-20 h-20 text-blue-400" viewBox="0 0 100 100" fill="currentColor">
+                            <rect x="25" y="15" width="50" height="70" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <rect x="30" y="25" width="40" height="20" fill="currentColor" opacity="0.2"/>
+                            <line x1="30" y1="55" x2="70" y2="55" stroke="currentColor" stroke-width="2"/>
+                            <line x1="30" y1="65" x2="65" y2="65" stroke="currentColor" stroke-width="1"/>
+                            <line x1="30" y1="70" x2="60" y2="70" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl font-bold section-title mb-6">FLYERS</h2>
+                    <p class="text-blue-200 font-light max-w-2xl mx-auto text-lg">
+                        Piezas promocionales efectivas que captan la atención
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[3/4] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/FLYER1.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[3/4] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/FLYER2.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                    <div class="cyber-card p-6 rounded-xl fade-in">
+                        <div class="w-full aspect-[3/4] bg-slate-700 rounded-lg flex items-center justify-center">
+                            <img src="C:/Users/User/Downloads/image/FLYER3.png" alt="Logo 1" class="w-full h-full object-contain" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-600 py-16 bg-slate-800/50 relative z-10">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                
+                <!-- Contacto -->
+                <div>
+                    <h4 class="text-2xl font-bold text-blue-300 mb-6 tracking-wider">CONTACTO</h4>
+                    <div class="space-y-3">
+                        <div class="contact-link text-lg">
+                            +584128307816
+                        </div>
+                        <div class="contact-link text-lg">
+                            ascaniovaleria07@gmail.com
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Centro -->
+                <div class="text-center">
+                    <div class="text-2xl font-bold neon-text mb-3">
+                        Lic. Valeria Ascanio
+                    </div>
+                    <div class="text-lg text-blue-300 font-light">
+                        Diseñadora Gráfica
+                    </div>
+                </div>
+
+                <!-- Créditos -->
+                <div class="text-center md:text-right">
+                    <div class="text-lg text-slate-400 font-light mb-2">
+                        Diseñado por:
+                    </div>
+                    <div class="text-xl text-blue-300 font-bold tracking-wider">
+                        <a href="https://leonova-studio.github.io/portfolio/" target="_blank"
+                        class="text-blue-300 hover:text-blue-400 transition-colors duration-300">
+                        LEONOVA STUDIO
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Crear partículas flotantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Efecto parallax en hexágonos
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hexagons = document.querySelectorAll('.hexagon');
+            
+            hexagons.forEach((hex, index) => {
+                const speed = 0.1 + (index * 0.05);
+                hex.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Animación de aparición al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(item => {
+            item.style.animationPlayState = 'paused';
+            observer.observe(item);
+        });
+
+        // Efecto de cursor cyber
+        document.addEventListener('mousemove', (e) => {
+            let cursor = document.querySelector('.cyber-cursor');
+            if (!cursor) {
+                cursor = document.createElement('div');
+                cursor.className = 'cyber-cursor fixed w-6 h-6 border border-blue-400 rounded-full pointer-events-none z-50 opacity-50';
+                cursor.style.background = 'radial-gradient(circle, rgba(96,165,250,0.2) 0%, transparent 70%)';
+                document.body.appendChild(cursor);
+            }
+            
+            cursor.style.left = e.clientX - 12 + 'px';
+            cursor.style.top = e.clientY - 12 + 'px';
+        });
+
+        // Inicializar partículas
+        createParticles();
+
+        // Efecto de hover mejorado en las tarjetas
+        document.querySelectorAll('.cyber-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.03) rotateX(2deg)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+            });
+        });
+
+        // Efecto especial para el botón de WhatsApp
+        document.querySelector('.whatsapp-btn').addEventListener('click', function(e) {
+            // Crear efecto de ondas
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = (e.clientX - e.target.offsetLeft) + 'px';
+            ripple.style.top = (e.clientY - e.target.offsetTop) + 'px';
+            ripple.style.width = ripple.style.height = '20px';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // Agregar animación de ripple
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d9e974b7e2c73d',t:'MTc1NDkzODE1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
